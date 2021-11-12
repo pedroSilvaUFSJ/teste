@@ -1,0 +1,150 @@
+.content {
+  background-color: var(--black);
+  width: 100%;
+  &__inner {
+    max-width: 1280px;
+    margin: 0 0 0 auto;
+  }
+  .container {
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .first {
+      display: flex;
+      padding-top: 4rem;
+      img {
+        object-fit: cover;
+        align-self: flex-start;
+        min-width: 212px;
+        max-width: 212px;
+      }
+    }
+    .middle {
+      min-width: fit-content;
+      display: flex;
+      flex-direction: column;
+      &__row {
+        display: flex;
+        flex-direction: row;
+        width: 448px;
+        .item {
+          padding-top: 32px;
+          padding-bottom: 32px;
+          padding-left: 0;
+          padding-right: 8px;
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 132.5%;
+        }
+        .lastRow,
+        .company {
+          padding-top: 32px;
+          padding-bottom: 32px;
+          padding-left: 0;
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 132.5%;
+          &__link {
+            padding-right: 0px;
+          }
+        }
+        .company {
+          color: var(--lightgray2);
+          padding-right: 20px;
+          font-weight: normal;
+        }
+        .lastRow:first-child {
+          padding-right: 16px;
+        }
+        .lastRow:nth-child(2) {
+          padding-right: 18px;
+        }
+      }
+      &__row:not(:last-child) {
+        border-bottom: 1px solid var(--gray);
+      }
+    }
+    .last {
+      position: relative;
+      img {
+        top: 0px;
+        right: 0px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1439px) {
+    &__inner {
+      max-width: 1440px;
+      margin: 0 0 0 10%;
+    }
+  }
+
+  @media only screen and (max-width: 1151px) {
+    &__inner {
+      max-width: 100%;
+      margin: 0 0 0 24px;
+    }
+  }
+
+  @media only screen and (max-width: 1050px) {
+    .container {
+      .middle {
+        margin: 0 2rem;
+        .item {
+          font-size: 14px !important;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 950px) {
+    &__inner {
+      margin: 0 0 0 0;
+    }
+    .container {
+      flex-direction: column;
+      justify-content: center;
+      .first {
+        padding-top: 3rem;
+        justify-content: center;
+        img {
+          min-width: 160px;
+          max-width: 160px;
+        }
+      }
+      .middle {
+        margin: 0 24px;
+        &__row {
+          justify-content: center;
+          width: 327px;
+          align-self: center;
+          .item {
+            padding-top: 24px !important;
+            padding-bottom: 24px !important;
+            padding-right: 16px !important;
+            font-size: 14px !important;
+          }
+          .link {
+            font-size: 14px;
+            padding: 0rem;
+          }
+          .lastRow,
+          .company {
+            font-size: 14px !important;
+          }
+          .lastRow:first-child {
+            padding-right: 19px;
+          }
+          .lastRow:nth-child(2) {
+            padding-right: 20px;
+          }
+        }
+      }
+      .last {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.content {
+    padding-top: 3rem;
+    padding-bottom: 4.5rem;
+    position: relative;
+    display: flex;
+    .firstColumn {
+        &__postItem:not(:first-child) {
+            padding-top: 1.25rem;
+        }
+    }
+    .secondColumn {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1rem;
+        &__postItem {
+            padding-top: 1.7rem;
+            max-width: 352px;
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        flex-direction: column;
+        padding-bottom: 2rem;
+        padding-top: 1rem;
+        .firstColumn,
+        .secondColumn {
+            padding-left: 0rem;
+            min-width: 100%;
+            &__advertisement {
+                padding-top: 1rem;
+            }
+        }
+    }
+}

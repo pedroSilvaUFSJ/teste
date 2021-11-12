@@ -1,0 +1,30 @@
+.content {
+    border-bottom: 1px solid var(--gray);
+    .overHeaderContent {
+        background-color: var(--white);
+    }
+    .navigationMenuContent {
+        background-color: var(--black);
+        .navigationMenu {
+            background-color: var(--black);
+            .navigationDesktop {
+                display: block;
+            }
+            .navigationMobile {
+                display: none;
+            }
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        .navigationMenuContent {
+            .navigationMenu {
+                .navigationDesktop {
+                    display: none;
+                }
+                .navigationMobile {
+                    display: block;
+                }
+            }
+        }
+    }
+}

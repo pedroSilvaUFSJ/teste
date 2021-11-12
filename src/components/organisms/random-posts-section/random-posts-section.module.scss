@@ -1,0 +1,44 @@
+.content { 
+    .firstRow {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 4.5rem;
+        &__item {
+            width: 32%;
+        }
+    }
+    .secondRow {
+        display: flex;
+        flex-direction: row;
+        padding-top: 2rem;
+        &__posts {
+            display: flex;
+            flex-direction: column;
+            &__item:not(:first-child) {
+                padding-top: 1rem;
+            }
+        }
+        &__advertisement {
+            justify-content: center;
+            display: flex;
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        .firstRow {
+            flex-direction: column;
+            padding-top: 0rem;
+            &__item {
+                width: 100%;
+                padding-top: 2rem;
+            }
+        }
+        .secondRow {
+            flex-direction: column;
+            &__advertisement {
+                width: 100%;
+                padding-top: 1.7rem;
+            }
+        }
+    }
+}

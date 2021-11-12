@@ -1,0 +1,29 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-bottom: 2rem;
+    margin-top: 0.5rem;
+    .inner {
+        max-width: 1280px;
+        position: relative;
+        width: 100%;
+        margin: 0 0 0 auto;
+        @media only screen and (max-width: 1293px) {
+            max-width: 100%;
+        }
+    }
+    .postContent {
+        margin-top: 4rem;
+        width: 100%;
+        border: 1px solid var(--ice);
+    }
+    @media only screen and (max-width: 768px) {
+        padding-left: 0rem;
+        margin-top: 0rem;
+        .postContent {
+            width: 100%;
+            margin-top: 2rem;
+        }
+    }
+}

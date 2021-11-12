@@ -1,0 +1,34 @@
+.content h4 {
+    padding-top: 70px;
+    padding-bottom: 32px;
+    padding-left: 0;
+    padding-right: 24px;
+    padding-left: 0rem;
+    color: var(--white);
+}
+.active h4 {
+    display: flex;
+    padding-left: 0rem;
+    color: var(--green);
+    font-weight: 600;
+    font-size: 16px;
+    .image {
+        width: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .content h4 {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-right: 16px;
+        font-size: 14px;
+    }
+    .active h4 {
+        .image {
+            padding-right: 12px;
+            place-self: baseline;
+        }
+    }
+}

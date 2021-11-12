@@ -1,0 +1,28 @@
+.content {
+    padding: 0 21px;
+    width: 300px;
+    height: 250px;
+    margin: 0 auto;
+    &__lg {
+        height: 600px;
+        .image {
+            display: block;
+        }
+        .imageSmall {
+            display: none;
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        padding: 0px;
+        &__lg {
+            width: 300px;
+            height: 250px;
+            .image {
+                display: none;
+            }
+            .imageSmall {
+                display: block;
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.content {
+    padding: 1rem;
+    padding-left: 0rem;
+    display: inline;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 132.5%;
+    color: var(--white);
+    min-width: fit-content;
+    a {
+        text-decoration: none;
+    }
+    .active {
+        color: var(--green);
+    }
+    .fontAwesome{
+        padding-right: 1rem;
+    }
+}

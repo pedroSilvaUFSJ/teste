@@ -1,69 +1,78 @@
-import * as React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
+import { Helmet } from 'react-helmet'
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from '../templates/layout'
+import * as style from './index.module.scss'
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+import Newsletter from '../components/molecules/newsletter-section/newsletter'
+import YourChannel from '../components/molecules/your-channel/your-channel'
+import LandingHomeSection from '../components/organisms/landing-home-section/landing-home-section';
+import TopFiveSection from '../components/organisms/top-five-section/top-five-section';
+import CarouselSection from '../components/organisms/carousel-section/carousel-section';
+import RandomPostsSection from '../components/organisms/random-posts-section/random-posts-section';
+import { createPreviewArticleObject, createTopFiveArticleObject, getAdvertisement } from '../utils/utils'
 
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
+const RootIndex = ({ data, location }) => {
+  const siteTitle = data?.site.siteMetadata.title;
+  const allNodes = data?.allMarkdownRemark?.edges?.map(({ node }) => node);
+  const filterNode = (tag) => allNodes.filter(({ frontmatter }) => frontmatter.tag === tag)
+  const ads = filterNode('advertisement');
+
+  // Teaser items retrieved from drupal
+  const items = data.drupal.teasers.items;
+  console.log(items);
+
+  /**
+   * Used to show landing section
+   */
+  const landingPosts = filterNode('landing').map(createPreviewArticleObject)
+  /**
+   * Used on topFive section
+   */
+  const topFivePosts = filterNode('topfive').map(createTopFiveArticleObject);
+  /**
+   * Used on carrousel section
+   */
+  const firstCarousel = {
+    title: 'Jupiler Pro League',
+    articles: filterNode('carousel-1').map(createPreviewArticleObject),
+    linkText: 'Jupiler Pro League',
+    to: 'jupiler',
+    qtd: 5
   }
 
-  return (
-    <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
+  const secondCarousel = {
+    title: 'Australian Open',
+    articles: filterNode('carousel-2').map(createPreviewArticleObject),
+    linkText: 'Alles over Austrialian Open',
+    to: 'austrialianOpen',
+    qtd: 5
+  }
 
-          return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+  /**
+   * Used on Random posts section
+   */
+  const randomPosts = filterNode('random').map(createPreviewArticleObject)
+
+  return (
+    <Layout {...location}>
+      <div className={style.content}>
+        <Helmet title={siteTitle} />
+        <div className="wrapper">
+          <LandingHomeSection posts={landingPosts} advertisement={getAdvertisement(ads, 'lg')} />
+          <TopFiveSection posts={topFivePosts} />
+          <RandomPostsSection posts={randomPosts} advertisement={getAdvertisement(ads, 'md')} />
+          <CarouselSection carousels={[firstCarousel, secondCarousel]} />
+          <YourChannel />
+          <Newsletter />
+        </div>
+      </div>
     </Layout>
   )
 }
 
-export default BlogIndex
+export default RootIndex
 
 export const pageQuery = graphql`
   query {
@@ -73,16 +82,107 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            tag
+            title
+            description
+            date(fromNow: true)
+            author
+            teamName
+            teamUrl
+            championship
+            featuredImage {
+              childImageSharp {
+                fluid(quality: 100, maxWidth: 800){
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            featuredImageSm {
+              childImageSharp {
+                fluid(quality: 100, maxWidth: 800){
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            size
+            advertisementUrl
+            icon
+          }
         }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+      }
+    }
+    drupal {
+      
+      clubs: nodeQuery(
+        filter: {conditions: {field: "type", value: "fanclub", operator: EQUAL}}
+      ) {
+        count
+        entities {
+          entityId
+          ... on Drupal_NodeFanclub {
+            logo: fieldFanclubLogo {
+              url
+              alt
+            }
+            cover: fieldFanclubBanner {
+              url
+              alt
+            }
+            fieldFanclubType
+            entityType
+            status
+            title
+            entityId
+            type {
+              entity {
+                ... on Drupal_NodeArticle {
+                  nid
+                  uuid
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      # Teaser articles homepage
+      teasers: nodeQuery(
+        filter: {conditions: {field: "type", value: "article", operator: EQUAL}}
+        limit: 10
+      ) {
+        count
+        items: entities {
+        nid: entityId
+        ... on Drupal_NodeArticle {
+          paragraphs: fieldParagraphs {
+            items: entity {
+              ... on Drupal_ParagraphAfbeelding {
+                imageParagraph: fieldImage {
+                  original: url
+                  thumbnail: derivative(style: THUMBNAIL) {
+                    url
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
           title
-          description
+          url: path {
+            slug: alias
+          }
+          publicationDate: fieldPublicationDate {
+            date
+          }
         }
+      }
       }
     }
   }

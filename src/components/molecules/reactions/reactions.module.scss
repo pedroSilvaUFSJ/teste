@@ -1,0 +1,132 @@
+.content {
+    padding-top: 52px;
+    .title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        padding-bottom: 16px;
+        letter-spacing: -0.005em;
+        .qtd {
+            color: var(--green);
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+    .input {
+        background: var(--cotton);
+        border: 1px solid var(--ice);
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 640px;
+        height: 48px;
+        padding-left: 16px;
+        font-family: Roboto;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 24px;
+        color: #7c7c7c;
+    }
+    .reaction {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid var(--ice);
+        padding-top: 24px;
+        padding-bottom: 24px;
+        &__info {
+            display: flex;
+            &__user {
+                font-style: normal;
+                font-weight: bold;
+                font-size: 14px;
+                line-height: 132.5%;
+                color: (--black-dark);
+                padding-right: 6px;
+            }
+            &__icon {
+                width: 16px;
+                height: 18px;
+                padding-right: 8px;
+            }
+            &__date {
+                color: var(--lightgray);
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 132.5%;
+            }
+        }
+        &__comment {
+            color: var(--gray2);
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 15px;
+            line-height: 132.5%;
+        }
+    }
+    
+    .loadMore {
+        display: flex;
+        padding-top: 16px;
+        justify-content: center;
+        &__button {
+            width: 100%;
+            max-width: 183px;
+            height: 48px;
+            background: var(--green);
+            border: 0px solid;
+            border-radius: 3px;
+
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            color: var(--white);
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        padding-top: 32px;
+        .title {
+            padding-bottom: 12px;
+        }
+        .input {
+            padding-left: 16px;
+        }
+        .reaction {
+            padding-top: 16px;
+            padding-bottom: 16px;
+            &__info {
+                display: flex;
+                &__user {
+                    font-size: 14px;
+                    padding-right: 16px;
+                }
+            }
+            &__comment {
+                padding-top: 8px;
+                color: var(--gray2);
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 15px;
+                line-height: 132.5%;
+            }
+        }
+        .loadMore {
+            display: flex;
+            padding-top: 16px;
+            justify-content: flex-start;
+            &__button {
+                margin-left: 0rem;
+                width: 100%;
+                max-width: 173px;
+                height: 44px;
+                font-size: 15px;
+                text-align: center;
+            }
+        }
+    }
+}

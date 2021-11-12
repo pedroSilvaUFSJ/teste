@@ -1,0 +1,103 @@
+.content {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--ice);
+    position:-webkit-sticky;
+    position: sticky;
+    top: 0;
+    .inner {
+        max-width: 1120px;
+        margin: 0 auto;
+    }
+    .likeButton {
+        border-top: 0px;
+        border-bottom: 0px;
+    }
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .image {
+            bottom: -6.29px;
+            width: 160px;
+            position: absolute;
+        }
+        .menuOptions {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            .menuItems {
+                display: flex;
+                flex-direction: row;
+                padding-left: 192px;
+                height: 64px;
+                .item {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 2px;
+                    .button {
+                        display: flex;
+                        align-items: center;
+                        height: 100%;
+                        text-decoration: none;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 24px;
+                        margin-right: 20px;
+                        margin-block-start: 0;
+                        margin-block-end: 0;
+                        color: var(--lightgray3);
+                    }
+                    .active {
+                        color: var(--gray2);
+                        font-weight: bold;
+                        padding-bottom: 0px;
+                        border-bottom: 4px solid var(--green);
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1120px) {
+        .inner {
+            margin: 0 12px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .inner {
+            margin: 0 0px;
+        }
+        .likeButton {
+            border-top: 1px solid var(--ice);
+            border-left: 0px;
+            border-right: 0px;
+            width: 100%;
+        }
+        .row {
+            .image {
+                bottom: 110px;
+                left: 12px;
+            }
+            .menuOptions {
+                flex-direction: column;
+                .menuItems {
+                    padding-left: 24px;
+                    height: 55px;
+                    .item {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 2px;
+                        .button {
+                            font-weight: 500;
+                            font-size: 15px;
+                            margin-right: 24px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

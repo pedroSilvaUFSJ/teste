@@ -1,0 +1,64 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  .navigationHead {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0rem;
+    height: 64px;
+    max-height: 64px;
+    background-color: var(--black);
+    justify-content: space-between;
+    border-bottom: 1px solid var(--gray);
+    padding-left: 24px;
+    .menuItems {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0rem;
+      margin: 0rem;
+      height: 64px;
+      width: 100%;
+      max-height: 64px;
+      background-color: var(--black);
+      justify-content: flex-start;
+      .navigationLogo {
+        max-height: 100%;
+        align-self: center;
+        width: auto;
+      }
+    }
+    .menuTab {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+  .tabContent {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    min-height: 108px;
+    position: relative;
+  }
+  .body {
+    position: relative;
+    .searchBar {
+      padding: 1rem;
+      padding-left: 24px;
+      padding-right: 32px;
+      border-bottom: 1px solid var(--gray);
+    }
+    .profileItem {
+      padding: 1rem;
+      padding-left: 4px;
+      border-top: 1px solid var(--gray);
+      .linkClass {
+        padding-right: 1rem;
+        @media only screen and (max-width: 768px) {
+          padding-left: 24px;
+        }
+        width: 100%;
+      }
+    }
+  }
+}

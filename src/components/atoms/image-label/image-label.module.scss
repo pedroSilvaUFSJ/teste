@@ -1,0 +1,17 @@
+.content {
+    position: relative;
+    .svg {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        fill: var(--white);
+        color: var(--white);
+        &__black {
+            fill: var(--green);
+            color: var(--green);
+        }
+        .label {
+            font-weight: bold;
+        }
+    }
+}

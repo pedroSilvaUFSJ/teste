@@ -1,0 +1,45 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  .navigationContent {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    height: 100%;
+    max-height: 65px;
+    background-color: var(--black);
+    justify-content: space-between;
+    .menuItems {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      height: 64px;
+      width: 100%;
+      max-height: 64px;
+      background-color: var(--black);
+      justify-content: flex-start;
+      .navigationLogo {
+        max-height: 100%;
+        align-self: center;
+        width: auto;
+        min-width: 140px;
+        padding-right: 3rem;
+      }
+    }
+    .menuTab {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+  .tabContent {
+    min-height: 108px;
+    position: relative;
+  }
+}
+.container {
+  overflow: initial !important;
+  border-bottom: 1px solid var(--gray);
+}
